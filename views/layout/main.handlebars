@@ -19,10 +19,12 @@
                {{#if logged_in}}
                <a href="/">Home</a>
                <a href="/dashboard">Dashboard</a>
-               <button class="no-button" id="logout">logout</button>
+               <button id="logout">logout</button>
                {{else}}
                <a href="/">Home</a>
+               <a href="/dashboard">Dashboard</a>
                <a href="/login">login</a>
+               <button id="logout">logout</button>
                {{/if}}
            </nav>
         </header>
