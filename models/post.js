@@ -19,7 +19,7 @@ Post.init(
                 len:[2]
             }
           },
-          text:{
+          post_content:{
             type: DataTypes.TEXT,
             allowNull: false,
             validate: {
@@ -39,8 +39,8 @@ Post.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'project',
+        modelName: 'post',
       }
 )
 
-module.exports = Project;
+module.exports = Post;
