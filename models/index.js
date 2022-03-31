@@ -1,50 +1,35 @@
-const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
-const sequelize = require('../config/connection');
+const User= require('./User');
+const Post= require('./Post');
+const Comment= require('./Comment');
 
-class User extends Model {
-  checkPassword(loginPw) {
-    return bcrypt.compareSync(loginPw, this.password);
-  }
-}
+// One user can create many post
+User.hasMany(Post,{
+    foreignKey:'user_id'
+});
 
-User.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [8],
-      },
-    },
-  },
-  {
-    hooks: {
-      beforeCreate: async (newUserData) => {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        return newUserData;
-      },
-      beforeUpdate: async (updatedUserData) => {
-        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-        return updatedUserData;
-      },
-    },
-    sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'user',
-  }
-);
+//One User can create many comments
+User.hasMany(Comment,{
+    foreignKey:'user_id'
+});
 
-module.exports = User;
+//A post belongs to only one user
+Post.belongsTo(User,{
+    foreignKey:'user_id'
+})
+
+//One post can have many comments
+Post.hasMany(Comment,{
+    foreignKey:'post_id'
+})
+
+//A comment belongs to only one user
+Comment.belongsTo(User,{
+    foreignKey:'user_id'
+})
+
+//A comment belongs to only one user
+Comment.belongsTo(Post,{
+    foreignKey:'post_id'
+})
+
+module.exports = { User, Post, Comment };
