@@ -5,12 +5,12 @@ const { Post, User, Comment } = require('../models');
 router.get('/', (req,res)=>{
     Post.findAll({
         attributes:[
-            'id','title','post_content'
+            'id','title','post_content','created_at'
         ],include:[
             {
                 model:Comment,
                 attributes:[
-                    'id','comment_text','user_id','post_id'
+                    'id','comment_text','user_id','post_id','created_id'
                 ],
                 include:{
                     model:User,
@@ -41,17 +41,17 @@ router.get('/post/:id',(req,res)=>{
             id=req.params.id
         },
         attributes:[
-            'id','title','post_content'
+            'id','title','post_content','created_at'
         ],
         include:[
             {
                 model:Comment,
                 attributes:[
-                    'id','comment_text','user_id','post_id'
+                    'id','comment_text','user_id','post_id','created_at'
                 ],
                 include:{
                     model:User,
-                    attributed:['username']
+                    attributes:['username']
                 }
             },
             {
@@ -66,7 +66,7 @@ router.get('/post/:id',(req,res)=>{
             return;
         }
         const post = dbPost.get({plain:true})
-        res.render('single-post',{post, loggedIn: req.session.loggedIn })
+        res.render('singlepost',{post, loggedIn: req.session.loggedIn })
       })
       .catch(err => {
         console.log(err);

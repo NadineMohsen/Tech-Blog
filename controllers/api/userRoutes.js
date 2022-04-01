@@ -22,11 +22,11 @@ router.get('/:id',(req,res)=>{
     },
     include:[{
       model:Post,
-      attributes:['id','title','post_content']
+      attributes:['id','title','post_content','created_at']
     },
     {
       model:Comment,
-      attributes:['id','comment_text'],
+      attributes:['id','comment_text', 'created_at'],
       include:{
         model:Post,
         attributes:['title']
@@ -51,6 +51,7 @@ router.get('/:id',(req,res)=>{
 router.post('/',(req,res)=>{
   User.create({
     username:req.body.username,
+    email: req.body.email,
     pasword:req.body.password
   })
   .then(dbUser=>{
@@ -67,7 +68,7 @@ router.post('/',(req,res)=>{
 router.post('/login',(req,res)=>{
   User.findOne({
     where:{
-      username: req.body.username
+      email: req.body.email
     }
   }).then(dbUser => {
     if(!dbUser){

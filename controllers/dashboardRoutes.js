@@ -7,12 +7,12 @@ router.get('/',withAuth,(req,res)=>{
     Post.findAll({
         where:{
             user_id: req.session.user_id
-        },attributes:['id','title','post_content'],
+        },attributes:['id','title','post_content','created_at'],
         include:[
             {
                 model:Comment,
                 attributes:[
-                    'id','comment_text','user_id','post_id'
+                    'id','comment_text','user_id','post_id','created_at'
                 ],
                 include:{
                     model:User,
@@ -25,7 +25,7 @@ router.get('/',withAuth,(req,res)=>{
               }
         ].then(dbPost=>{
             const posts = dbPost.map(post => post.get({ plain: true }));
-            res.render('dashboard', { posts, loggedIn: req.session.loggedIn });
+            res.render('dashboard', { posts, loggedIn: true});
         })
         
     })
@@ -42,13 +42,13 @@ router.get('/edit/:id',withAuth,(req,res)=>{
             id=req.params.id
         },
         attributes:[
-            'id','title','post_content'
+            'id','title','post_content','created_at'
         ],
         include:[
             {
                 model:Comment,
                 attributes:[
-                    'id','comment_text','user_id','post_id'
+                    'id','comment_text','user_id','post_id','created_at'
                 ],
                 include:{
                     model:User,
@@ -63,7 +63,7 @@ router.get('/edit/:id',withAuth,(req,res)=>{
     })
     .then(dbPost => {
         const post = dbPost.get({plain:true})
-        res.render('edit-post',{post, loggedIn: req.session.loggedIn })
+        res.render('editpost',{post, loggedIn: true })
       })
       .catch(err => {
         console.log(err);
