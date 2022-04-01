@@ -39,7 +39,7 @@ router.get('/',withAuth,(req,res)=>{
 router.get('/edit/:id',withAuth,(req,res)=>{
     Post.findOne({
         where:{
-            id=req.params.id
+            id: req.params.id
         },
         attributes:[
             'id','title','post_content','created_at'

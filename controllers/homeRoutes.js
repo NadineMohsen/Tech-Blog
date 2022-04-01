@@ -38,8 +38,8 @@ router.get('/', (req,res)=>{
 router.get('/post/:id',(req,res)=>{
     Post.findOne({
         where:{
-            id=req.params.id
-        },
+            id:req.params.id
+                },
         attributes:[
             'id','title','post_content','created_at'
         ],
