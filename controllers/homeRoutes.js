@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { id } = require('prelude-ls');
 const { Post, User, Comment } = require('../models');
 
 //homepage route, gets all posts
@@ -15,12 +14,12 @@ router.get('/', (req,res)=>{
                 ],
                 include:{
                     model:User,
-                    attributed:['username']
+                    attributes:['username']
                 }
             }
             ,{
             model:User,
-            attributed:['username']
+            attributes:['username']
             }
         ]
     })
@@ -51,7 +50,7 @@ router.get('/signup', (req, res) => {
     res.render('login');
   });
 
-
+//get one post with a specific id
 router.get('/post/:id',(req,res)=>{
     Post.findOne({
         where:{
@@ -83,8 +82,7 @@ router.get('/post/:id',(req,res)=>{
             return;
         }
         const post = dbPost.get({plain:true})
-        res.render('single-post',{posts, loggedIn: req.session.loggedIn })
-
+        res.render('single-post',{post, loggedIn: req.session.loggedIn })
       })
       .catch(err => {
         console.log(err);
