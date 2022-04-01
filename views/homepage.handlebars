@@ -1,9 +1,8 @@
-{{!-- display posts --}}
-<ul>
-    {{#each posts as |post| }}
-    <ul>
-        {{> postinfo post}}
-    </ul>
-</ul>
-
-
+<ol class="post-list">
+<!-- posts array -->
+{{#each posts as |post|}}
+  <ul>
+      {{> postinfo post }}
+  </ul>
+{{/each}}
+</ol>
