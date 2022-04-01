@@ -34,22 +34,6 @@ router.get('/', (req,res)=>{
       });
 })
 
-//login route redirection
-router.get('/login', (req, res) => {
-    // If the user is already logged in, redirect the request to another route : homepage
-    if (req.session.logged_in) {
-      res.redirect('/');
-      return;
-    }
-  
-    res.render('login');
-  });
-
-  //signup route redirection
-router.get('/signup', (req, res) => {
-    res.render('login');
-  });
-
 //get one post with a specific id
 router.get('/post/:id',(req,res)=>{
     Post.findOne({
@@ -89,6 +73,24 @@ router.get('/post/:id',(req,res)=>{
         res.status(500).json(err);
       });
 })
+
+//login route redirection
+router.get('/login', (req, res) => {
+    // If the user is already logged in, redirect the request to another route : homepage
+    if (req.session.logged_in) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('login');
+  });
+
+  //signup route redirection
+router.get('/signup', (req, res) => {
+    res.render('signup');
+  });
+
+
 
   module.exports = router;
 
