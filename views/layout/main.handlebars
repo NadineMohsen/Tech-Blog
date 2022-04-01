@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Blog</title>
-      <link rel="stylesheet" href="/css/jass.css">
-      <link rel="stylesheet" href="/css/style.css">
-    </head>
-    
-    <body>
-        <div>
-        <header>
-           <h1>
-               <a href="/">The Tech Blog</a>
-           </h1> 
-           <nav>
-               {{#if logged_in}}
-               <a href="/">Home</a>
-               <a href="/dashboard">Dashboard</a>
-               <button id="logout">logout</button>
-               {{else}}
-               <a href="/">Home</a>
-               <a href="/dashboard">Dashboard</a>
-               <a href="/login">login</a>
-               <button id="logout">logout</button>
-               {{/if}}
-           </nav>
-        </header>
-        <main>
-            {{{body}}}
-        </main>
-        </div>
 
-         <!-- Render logout script for logged in users only -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Tech Blog</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        {{#if logged_in}}
-        <script src="/js/logout.js"></script>
-        {{/if}}
-    </body>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>
+        <p class="blog-title">The Tech Blog <i class="large material-icons">laptop_mac</i></p>
+      </h1>
+    
+    <nav>
+    {{#if loggedIn}}
+    <a href="/" class="homepage">Homepage</a>
+    <a href="/dashboard">Dashboard</a>
+    <button id="logout" class="btn-no-style">Logout</button>
+    {{else}}
+    <a href="/" class="homepage">Homepage</a>
+    <a href="/login">Login</a>
+    {{/if}}
+    </nav>
+    </header>
+    <main>
+      {{{ body }}}
+    </main>
+  </div>
+
+    {{#if loggedIn}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+
+</body>
+
 </html>
