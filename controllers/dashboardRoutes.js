@@ -16,7 +16,7 @@ router.get('/',withAuth,(req,res)=>{
                 ],
                 include:{
                     model:User,
-                    attributed:['username']
+                    attributes:['username']
                 }
             },
             {
@@ -52,7 +52,7 @@ router.get('/edit/:id',withAuth,(req,res)=>{
                 ],
                 include:{
                     model:User,
-                    attributed:['username']
+                    attributes:['username']
                 }
             },
             {

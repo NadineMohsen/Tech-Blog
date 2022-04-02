@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 //get users
 router.get('/',(req,res)=>{
@@ -49,6 +49,7 @@ router.get('/:id',(req,res)=>{
 
 //create user
 router.post('/',(req,res)=>{
+  console.log(req.body)
   User.create({
     username:req.body.username,
     email: req.body.email,
@@ -72,7 +73,7 @@ router.post('/login',(req,res)=>{
     }
   }).then(dbUser => {
     if(!dbUser){
-      res.status(400).json({ message: 'No user with that username'});
+      res.status(400).json({ message: 'No user with that email'});
       return;}
       //validate password
       const validatePassword = dbUser.checkPassword(req.body.password);
