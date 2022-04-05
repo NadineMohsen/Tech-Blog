@@ -93,7 +93,7 @@ User can also add comments on other developer posts.
 If you would like to contribute to this project reach out to me. Contact Information can be found below.
 
 ## Test-Instructions
-
+No test 
 
 ## License
 This application is licensed under the MIT license.
@@ -103,7 +103,7 @@ This application is licensed under the MIT license.
 ## Repository
 https://github.com/NadineMohsen/Tech-Blog
 ## Link 
-[Heroku](https://lychee-cupcake-15671.herokuapp.com/)
+[Heroku](https://tech-blog-nm.herokuapp.com/)
 
 ## Questions
 For any questions you can reach me on github or by email
@@ -111,8 +111,8 @@ For any questions you can reach me on github or by email
 - Email nadine.mohsen@hotmail.com
 
 ## Demo
-![Demo1](./assets/Screenshot.png)
+![Demo](./demo.jpg)
 
-## Links to Demo
+
 
 
