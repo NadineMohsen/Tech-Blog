@@ -1,17 +1,24 @@
-<form class="login-form">
-  <div>
-    <label for="email-login">Email:</label>
-    <input type="text" id="email-login" />
-  </div>
-  <div>
-    <label for="password-login">Password:</label>
-    <input type="password" id="password-login" />
-  </div>
-  <div>
-    <button type="submit">Login</button>
-  </div>
-  <div class ="sign-up">
-      Not a member? <a href="/signup">Sign Up now!</a>
-  </div>
+<div class="row">
+  <form class="col s12" id="login-form">
+      <div class="row">
+    <div class="row">
+        <div class="input-field col s12">
+          <input id="username-login" type="text" >
+          <label for="icon_prefix">Username</label>
+        </div>
+    </div>
 
-  <script src="/js/login.js"></script>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password-login" type="password">
+          <label for="password">Password</label>
+        </div>
+      </div>
+   
+      <button type="submit" class="btn">Login</button>
+      <a class="signup" href="/signup">Sign up instead</a>
+
+    </form>
+  </div>
+    
+<script src="/javascript/login.js"></script>

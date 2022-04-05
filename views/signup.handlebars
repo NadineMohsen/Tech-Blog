@@ -1,21 +1,25 @@
-<form class="signup-form">
-  <div>
-    <label for="username-signup">Username:</label>
-    <input type="text" id="username-signup" />
-  </div>
-  <div>
-    <label for="email-signup">Email:</label>
-    <input type="text" id="email-signup" />
-  </div>
-  <div>
-    <label for="password-signup">Password:</label>
-    <input type="password" id="password-signup" autocomplete="on">
-  </div>
-  <div>
-    <button type="submit">Sign Up</button>
-  </div>
-</form>
+<div class="row">
+  <form class="col s12" id="signup-form">
+      <div class="row">
+    <div class="row">
+        <div class="input-field col s12">
+          <input id="username-signup" type="text" >
+          <label for="icon_prefix">Username</label>
+        </div>
+    </div>
 
-<!-- javascript file-->
-<script src="./js/signup.js"></script>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password-signup" type="password">
+          <label for="password">Password</label>
+        </div>
+      </div>
+   
+      <button type="submit" class="btn">Login</button>
+      <a class="signup" href="/login">Log in instead</a>
 
+    </form>
+  </div>
+    
+
+<script src="/javascript/signup.js"></script>

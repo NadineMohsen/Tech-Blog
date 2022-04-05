@@ -4,38 +4,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Tech Blog</title>
-  <link rel="stylesheet" href="./css/style.css">
-
+  <title>MVC Tech Blog</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
-  <div class="wrapper">
-    <header>
-      <h1>
-        <p class="blog-title">The Tech Blog</p>
-      </h1>
-    
     <nav>
-    {{#if loggedIn}}
-    <a href="/" class="homepage">Homepage</a>
-    <a href="/dashboard">Dashboard</a>
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <a href="/" class="homepage">Homepage</a>
-    <a href="/login">Login</a>
-    {{/if}}
-    </nav>
-    </header>
+    <div class="nav-wrapper">
+      <a href="#" class="title">The Tech Blog</a>
+      <ul id="nav-mobile" class="right navbar">
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        {{#if loggedIn}}
+        <li><a href="/" id="logout">Logout</a></li>
+        {{else}}
+        <li><a href="/login" id="login">Login</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
+
     <main>
       {{{ body }}}
     </main>
-  </div>
+
 
     {{#if loggedIn}}
-    <script src="/js/logout.js"></script>
+    <script src="/javascript/logout.js"></script>
     {{/if}}
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
 </html>
