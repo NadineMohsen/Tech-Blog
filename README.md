@@ -111,7 +111,7 @@ For any questions you can reach me on github or by email
 - Email nadine.mohsen@hotmail.com
 
 ## Demo
-![Demo](./demo.jpg)
+![DemoPic](./demo.jpg)
 
 
 
