@@ -129,7 +129,7 @@ router.get('/posts-comments', (req, res) => {
         })
         .then(dbPost => {
             if (!dbPost) {
-                res.status(404).json({ message: 'No post found with this id' });
+                res.status(404).json({ message: 'No post found' });
                 return;
             }
             const post = dbPost.get({ plain: true });

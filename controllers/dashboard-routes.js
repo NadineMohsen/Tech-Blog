@@ -72,7 +72,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
         })
         .then(dbPost => {
             if (!dbPost) {
-                res.status(404).json({ message: 'Bad request, no post with this id' });
+                res.status(404).json({ message: 'No post found' });
                 return;
             }
             //renders post to edit post page

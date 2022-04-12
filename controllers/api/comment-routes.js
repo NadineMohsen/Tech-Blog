@@ -45,45 +45,5 @@ router.post('/', withAuth, (req, res) => {
     }
 });
 
-//update comment route (/comments/:id)
-router.put('/:id', withAuth, (req, res) => {
-    //update text
-    Comment.update({
-        comment_text: req.body.comment_text
-    }, 
-    {   //specific comment
-        where: {
-            id: req.params.id
-        }
-    })
-    .then(dbComment => {
-        if (!dbComment) {
-            res.status(404).json({ message: 'Bad request, no comment with this id' });
-            return;
-        }
-        res.json(dbComment);
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-});
 
-
-//delete one commment route (/comments/:id)
-router.delete('/:id', withAuth, (req, res) => {
-    Comment.destroy({
-        where: {
-            id: req.params.id
-        }
-    }).then(dbComment => {
-        if (!dbComment) {
-            res.status(404).json({ message: 'Bad request, no comment with this id' });
-            return;
-        }
-        res.json(dbComment);
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-});
 module.exports = router;

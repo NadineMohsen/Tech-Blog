@@ -14,7 +14,7 @@ async function signupFormHandler(event) {
         });
         //goes to dahboard after sign up
         if (response.ok) {
-            console.log('success');
+            console.log('Signed Up');
             document.location.replace('/dashboard');
         } else {
             alert(response.statusText);

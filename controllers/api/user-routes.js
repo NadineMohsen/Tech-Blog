@@ -5,7 +5,7 @@ const { User, Post, Comment } = require('../../models');
 router.get('/', (req, res) => {
   //finds all usernames
     User.findAll({
-            attributes: { exclude: ['[password'] }
+            attributes: { exclude: ['password'] }
         })
         .then(dbUser => res.json(dbUser))
         .catch(err => {
@@ -50,7 +50,7 @@ router.get('/:id', (req, res) => {
         })
         .then(dbUser => {
             if (!dbUser) {
-                res.status(404).json({ message: 'Bad request, no user with this id' });
+                res.status(404).json({ message: 'No user found, Please try again' });
                 return;
             }
             res.json(dbUser);
@@ -94,14 +94,14 @@ router.post('/login', (req, res) => {
             }
         }).then(dbUser => {
             if (!dbUser) {
-                res.status(400).json({ message: 'No user found' });
+                res.status(400).json({ message: 'No user found with these details, please try again' });
                 return;
             }
             //make sure it's the correct password
             const validPassword = dbUser.checkPassword(req.body.password);
             //in case of a wrong password
             if (!validPassword) {
-                res.status(400).json({ message: 'Incorrect password!' });
+                res.status(400).json({ message: 'Wrong password, please try again' });
                 return;
             }
             //saves session
@@ -110,7 +110,7 @@ router.post('/login', (req, res) => {
                 req.session.username = dbUser.username;
                 req.session.loggedIn = true;
 
-                res.json({ user: dbUser, message: 'Succes, you are now logged in!' });
+                res.json({ user: dbUser, message: 'Logged in!' });
             });
         })
         .catch(err => {
@@ -129,50 +129,6 @@ router.post('/logout', (req, res) => {
     } else {
         res.status(404).end();
     }
-});
-
-
-// update user route (/users/:id)
-router.put('/:id', (req, res) => {
-    //update details
-    User.update(req.body, {
-            individualHooks: true,
-            where: {
-                id: req.params.id
-            }
-        })
-        .then(dbUser => {
-            if (!dbUser[0]) {
-                res.status(404).json({ message: 'No user found with this id, please sign up' });
-                return;
-            }
-            res.json(dbUser);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-
-});
-
-//delete a user (/users/delete)
-router.delete('/:id', (req, res) => {
-    User.destroy({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then(dbUser => {
-            if (!dbUser) {
-                res.status(404).json({ message: 'No user found with this id, failed to delete' });
-                return;
-            }
-            res.json(dbUser);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
 });
 
 module.exports = router;

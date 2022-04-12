@@ -16,6 +16,7 @@ async function loginFormHandler(event) {
       });
       //goes to dashboard after logging in
       if (response.ok) {
+        console.log('Logged In');
         document.location.replace('/dashboard');
       } else {
         alert(response.statusText);
